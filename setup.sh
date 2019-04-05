@@ -1,5 +1,12 @@
 #!/bin/bash
 
+initialized_state="/var/www/html/liquid-initialized"
+
+if [ -f "$initialized_state" ]; then
+    echo "Already initialized"
+    exit
+fi
+
 run_as() {
     if [ "$(id -u)" = 0 ]; then
         su -p www-data -s /bin/sh -c "$1"
@@ -8,8 +15,8 @@ run_as() {
     fi
 }
 
-run_as 'cp /liquid/config/custom.config.php /var/www/html/config/custom.config.php'
-run_as 'cp -r /liquid/themes/liquid /var/www/html/themes/liquid'
+run_as 'cp /liquid/custom.config.php /var/www/html/config/custom.config.php'
+run_as 'cp -r /liquid/theme /var/www/html/themes/liquid'
 
 run_as 'chown -R 33:33 /var/www/html/config/custom.config.php'
 run_as 'chmod g+s /var/www/html/config/custom.config.php'
@@ -39,4 +46,4 @@ run_as 'php occ app:disable survey_client'
 run_as 'php occ app:disable systemtags'
 run_as 'php occ app:disable updatenotification'
 
-
+touch "$initialized_state"
