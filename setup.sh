@@ -2,18 +2,6 @@
 
 set -ex
 
-initialized_state="/var/www/html/liquid-initialized"
-
-if [ -f "$initialized_state" ]; then
-    echo "Already initialized"
-    exit
-fi
-
-if [ -z "$NEXTCLOUD_POSTGRES_HOST" ]; then
-    echo "Missing NEXTCLOUD_POSTGRES_HOST - please wait for the DB to spin up before running setup"
-    exit
-fi
-
 run_as() {
     if [ "$(id -u)" = 0 ]; then
         su -p www-data -s /bin/sh -c "$1"
@@ -21,6 +9,12 @@ run_as() {
         sh -c "$1"
     fi
 }
+
+if [ -z "$NEXTCLOUD_POSTGRES_HOST" ]; then
+    echo "Missing NEXTCLOUD_POSTGRES_HOST - please wait for the DB to spin up before running setup"
+    exit
+fi
+
 
 run_as 'cp /liquid/custom.config.php /var/www/html/config/custom.config.php'
 run_as 'cp -r /liquid/theme /var/www/html/themes/liquid'
@@ -31,8 +25,14 @@ run_as 'chmod g+s /var/www/html/config/custom.config.php'
 run_as 'chown -R 33:33 /var/www/html/themes/liquid'
 run_as 'chmod g+s /var/www/html/themes/liquid'
 
-run_as "php /var/www/html/occ maintenance:install --database pgsql --database-name $NEXTCLOUD_POSTGRES_DB --database-user $NEXTCLOUD_POSTGRES_USER --database-pass $NEXTCLOUD_POSTGRES_PASSWORD --database-host $NEXTCLOUD_POSTGRES_HOST --admin-user=$NEXTCLOUD_ADMIN_USER --admin-pass=$NEXTCLOUD_ADMIN_PASSWORD"
+initialized_state="/var/www/html/liquid-initialized"
 
+if [ -f "$initialized_state" ]; then
+    echo "Already initialized"
+    exit
+fi
+
+run_as "php /var/www/html/occ maintenance:install --database pgsql --database-name $NEXTCLOUD_POSTGRES_DB --database-user $NEXTCLOUD_POSTGRES_USER --database-pass $NEXTCLOUD_POSTGRES_PASSWORD --database-host $NEXTCLOUD_POSTGRES_HOST --admin-user=$NEXTCLOUD_ADMIN_USER --admin-pass=$NEXTCLOUD_ADMIN_PASSWORD"
 run_as 'php occ user:add --password-from-env --display-name="ncsync" ncsync'
 
 run_as 'php occ app:disable theming'
