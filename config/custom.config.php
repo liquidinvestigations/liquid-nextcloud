@@ -6,7 +6,7 @@
 $CONFIG = array(
   'trusted_domains' =>
     array (
-      $_ENV['NC_HOST'],
+      $_ENV['NEXTCLOUD_HOST'],
     ),
 
   'allow_user_to_change_display_name' => false,
