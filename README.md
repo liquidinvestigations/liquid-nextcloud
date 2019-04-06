@@ -32,3 +32,8 @@
             -v `pwd`/volumes/nextcloud:/var/www/html \
             liquidinvestigations/liquid-nextcloud:latest \
             /setup.sh
+
+
+### Docker build
+
+https://hub.docker.com/r/liquidinvestigations/liquid-nextcloud
