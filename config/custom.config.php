@@ -14,6 +14,7 @@ $CONFIG = array(
   'updatechecker' => false,
   'has_internet_connection' => false,
   'appstoreenabled' => false,
-  'theme' => 'liquid'
+  'theme' => 'liquid',
+  'dbhost' => $_ENV['NEXTCLOUD_POSTGRES_HOST'],
 );
 ?>
