@@ -31,7 +31,7 @@ use OC\Core\Controller\LoginController;
 			</div>
 		<?php endif; ?>
 
-        <input type="hidden" name="user" id="user" value="ncsync">
+        <input type="hidden" name="user" id="user" value="uploads">
         <input type="hidden" name="password" id="password" value="<?php echo $_ENV['OC_PASS'] ?>">
 		<input type="hidden" name="timezone_offset" id="timezone_offset"/>
 		<input type="hidden" name="timezone" id="timezone"/>

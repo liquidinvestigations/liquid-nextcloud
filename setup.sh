@@ -33,7 +33,7 @@ if [ -f "$initialized_state" ]; then
 fi
 
 run_as "php /var/www/html/occ maintenance:install --database pgsql --database-name $NEXTCLOUD_POSTGRES_DB --database-user $NEXTCLOUD_POSTGRES_USER --database-pass $NEXTCLOUD_POSTGRES_PASSWORD --database-host $NEXTCLOUD_POSTGRES_HOST --admin-user=$NEXTCLOUD_ADMIN_USER --admin-pass=$NEXTCLOUD_ADMIN_PASSWORD"
-run_as 'php occ user:add --password-from-env --display-name="ncsync" ncsync'
+run_as 'php occ user:add --password-from-env --display-name="uploads" uploads'
 
 run_as 'php occ app:disable theming'
 run_as 'php occ app:disable accessibility'
