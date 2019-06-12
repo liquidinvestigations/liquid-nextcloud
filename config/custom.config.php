@@ -6,7 +6,7 @@
 $CONFIG = array(
   'trusted_domains' =>
     array (
-      $_ENV['NEXTCLOUD_HOST'],
+      $_ENV['HOSTNAME'],
     ),
 
   'allow_user_to_change_display_name' => false,
@@ -15,6 +15,6 @@ $CONFIG = array(
   'has_internet_connection' => false,
   'appstoreenabled' => false,
   'theme' => 'liquid',
-  'dbhost' => $_ENV['NEXTCLOUD_POSTGRES_HOST'],
+  'dbhost' => $_ENV['POSTGRES_HOST'],
 );
 ?>

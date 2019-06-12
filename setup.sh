@@ -10,8 +10,8 @@ run_as() {
     fi
 }
 
-if [ -z "$NEXTCLOUD_POSTGRES_HOST" ]; then
-    echo "Missing NEXTCLOUD_POSTGRES_HOST - please wait for the DB to spin up before running setup"
+if [ -z "$POSTGRES_HOST" ]; then
+    echo "Missing POSTGRES_HOST - please wait for the DB to spin up before running setup"
     exit
 fi
 
@@ -32,7 +32,7 @@ if [ -f "$initialized_state" ]; then
     exit
 fi
 
-run_as "php /var/www/html/occ maintenance:install --database pgsql --database-name $NEXTCLOUD_POSTGRES_DB --database-user $NEXTCLOUD_POSTGRES_USER --database-pass $NEXTCLOUD_POSTGRES_PASSWORD --database-host $NEXTCLOUD_POSTGRES_HOST --admin-user=$NEXTCLOUD_ADMIN_USER --admin-pass=$NEXTCLOUD_ADMIN_PASSWORD"
+run_as "php /var/www/html/occ maintenance:install --database pgsql --database-name $POSTGRES_DB --database-user $POSTGRES_USER --database-pass $POSTGRES_PASSWORD --database-host $POSTGRES_HOST --admin-user=$ADMIN_USER --admin-pass=$ADMIN_PASSWORD"
 run_as 'php occ user:add --password-from-env --display-name="uploads" uploads'
 
 run_as 'php occ app:disable theming'
