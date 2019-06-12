@@ -1,5 +1,7 @@
 FROM nextcloud:15
 
+RUN apt-get update -y && apt-get install -y jq
+
 COPY ./config/custom.config.php /liquid/custom.config.php
 COPY ./theme /liquid/theme
 
