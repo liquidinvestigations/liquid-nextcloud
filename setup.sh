@@ -4,43 +4,55 @@ set -ex
 
 if [ -z "$NEXTCLOUD_INTERNAL_STATUS_URL" ]; then
     echo "Missing NEXTCLOUD_INTERNAL_STATUS_URL - please wait for apache to boot up"
+    sleep 6
     exit 1
 fi
 
-if [ -z "$POSTGRES_HOST" ]; then
-    echo "Missing POSTGRES_HOST - please wait for the DB to spin up before running setup"
+if [ -z "$MYSQL_HOST" ]; then
+    echo "Missing MYSQL_HOST - please wait for the DB to spin up before running setup"
+    sleep 6
     exit 1
 fi
 
 INSTALLED=$(curl --silent --header "Host: $NEXTCLOUD_HOST" $NEXTCLOUD_INTERNAL_STATUS_URL | jq .installed)
-if [ "$INSTALLED" == "true" ]; then
-    echo "Nextcloud already installed"
-    exit 0
+if [ "$INSTALLED" == "false" ]; then
+    echo "Installing nextcloud"
+
+    cp -r /liquid/theme /var/www/html/themes/liquid
+    chown -R www-data:www-data /var/www/html/themes/liquid
+    chmod g+s /var/www/html/themes/liquid
+
+    php /var/www/html/occ maintenance:install \
+            --no-interaction \
+            --verbose \
+            --database mysql \
+            --database-name $MYSQL_DB \
+            --database-host $MYSQL_HOST \
+            --database-user $MYSQL_USER \
+            --database-pass $MYSQL_PASSWORD \
+            --admin-user=$NEXTCLOUD_ADMIN_USER \
+            --admin-pass=$NEXTCLOUD_ADMIN_PASSWORD
+
+    php occ user:add --password-from-env --display-name="uploads" uploads
+
 elif [ "$INSTALLED" == "null" ]; then
     echo "Apache probably not accepting host header"
+    sleep 6
     exit 1
 fi
 
-cp /liquid/custom.config.php /var/www/html/config/custom.config.php
-cp -r /liquid/theme /var/www/html/themes/liquid
-
-chown -R www-data:www-data /var/www/html/config/custom.config.php
-chmod g+s /var/www/html/config/custom.config.php
-
-chown -R www-data:www-data /var/www/html/themes/liquid
-chmod g+s /var/www/html/themes/liquid
-
-php /var/www/html/occ \
-        maintenance:install \
-        --database pgsql \
-        --database-name $POSTGRES_DB \
-        --database-user $POSTGRES_USER \
-        --database-pass $POSTGRES_PASSWORD \
-        --database-host $POSTGRES_HOST \
-        --admin-user=$NEXTCLOUD_ADMIN_USER \
-        --admin-pass=$NEXTCLOUD_ADMIN_PASSWORD
-
-php occ user:add --password-from-env --display-name="uploads" uploads
+php occ config:system:set trusted_domains 0 --value '*'
+php occ config:system:set dbhost --value $MYSQL_HOST
+php occ config:system:set theme --value liquid
+php occ config:system:set overwrite.cli.url --value $HTTP_PROTO://$NEXTCLOUD_HOST
+php occ config:system:set allow_user_to_change_display_name --value false --type boolean
+php occ config:system:set overwritehost --value $NEXTCLOUD_HOST
+php occ config:system:set overwriteprotocol --value $HTTP_PROTO
+php occ config:system:set htaccess.RewriteBase --value '/'
+php occ config:system:set skeletondirectory --value ''
+php occ config:system:set updatechecker --value false --type boolean
+php occ config:system:set has_internet_connection --value false --type boolean
+php occ config:system:set appstoreenabled --value false --type boolean
 
 php occ app:disable theming
 php occ app:disable accessibility
@@ -61,3 +73,5 @@ php occ app:disable support
 php occ app:disable survey_client
 php occ app:disable systemtags
 php occ app:disable updatenotification
+
+echo "Configuration done"
