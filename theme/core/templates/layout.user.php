@@ -43,6 +43,7 @@
 							<?php p($theme->getName()); ?> <?php p(!empty($_['application'])?$_['application']: $l->t('Apps')); ?>
 						</h1>
 					</div>
+					<h1 style="color: #fff; font-size:200%"><?php echo $theme->getName(); ?></h1>
 				</a>
 
 				<ul id="appmenu" <?php if ($_['themingInvertMenu']) { ?>class="inverted"<?php } ?>>
