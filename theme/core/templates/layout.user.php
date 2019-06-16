@@ -44,9 +44,6 @@
 						</h1>
 					</div>
 				</a>
-				<a href="<?php echo $_ENV['LIQUID_CORE_URL'] ?>">
-					<h1 style="color: #fff; font-size:200%"><?php echo $theme->getName(); ?></h1>
-				</a>
 
 				<ul id="appmenu" <?php if ($_['themingInvertMenu']) { ?>class="inverted"<?php } ?>>
 					<?php foreach ($_['navigation'] as $entry): ?>
@@ -99,6 +96,10 @@
 						</div>
 					</div>
 				</nav>
+
+				<a style="margin-left:20px;" href="<?php echo $_ENV['LIQUID_CORE_URL'] ?>">
+					<h1 style="color: #fff; font-size:166%">&#8594; <?php echo $theme->getName(); ?></h1>
+				</a>
 
 			</div>
 
