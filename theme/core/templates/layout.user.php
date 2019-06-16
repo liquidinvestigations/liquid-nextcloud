@@ -43,6 +43,8 @@
 							<?php p($theme->getName()); ?> <?php p(!empty($_['application'])?$_['application']: $l->t('Apps')); ?>
 						</h1>
 					</div>
+				</a>
+				<a href="<?php echo $_ENV['LIQUID_CORE_URL'] ?>">
 					<h1 style="color: #fff; font-size:200%"><?php echo $theme->getName(); ?></h1>
 				</a>
 

@@ -25,7 +25,7 @@ class OC_Theme {
 	 * @return string URL
 	 */
 	public function getBaseUrl() {
-		return $_ENV['LIQUID_BASEURL'];
+		return $_ENV['NEXTCLOUD_URL'];
 	}
 
 	/**
@@ -73,7 +73,7 @@ class OC_Theme {
 	 * @return string slogan
 	 */
 	public function getSlogan() {
-		return $_ENV['LIQUID_TITLE'] . ' - Dump Your Files Here';
+		return $_ENV['LIQUID_TITLE'] . ' - Dump <i>Those</i> Files Over Here';
 	}
 
 	/**
