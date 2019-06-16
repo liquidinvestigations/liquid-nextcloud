@@ -97,6 +97,10 @@
 					</div>
 				</nav>
 
+				<a style="margin-left:20px;" href="<?php echo $_ENV['LIQUID_CORE_URL'] ?>">
+					<h1 style="color: #fff; font-size:166%">&#8594; <?php echo $theme->getName(); ?></h1>
+				</a>
+
 			</div>
 
 			<div class="header-right">
