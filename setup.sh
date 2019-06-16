@@ -18,10 +18,6 @@ INSTALLED=$(curl --silent --header "Host: $NEXTCLOUD_HOST" $NEXTCLOUD_INTERNAL_S
 if [ "$INSTALLED" == "false" ]; then
     echo "Installing nextcloud"
 
-    cp -r /liquid/theme /var/www/html/themes/liquid
-    chown -R www-data:www-data /var/www/html/themes/liquid
-    chmod g+s /var/www/html/themes/liquid
-
     php /var/www/html/occ maintenance:install \
             --no-interaction \
             --verbose \
@@ -35,11 +31,24 @@ if [ "$INSTALLED" == "false" ]; then
 
     php occ user:add --password-from-env --display-name="uploads" uploads
 
+    echo "Installation successful -- now restarting (aka failing) the migrate job"
+    exit 66
 elif [ "$INSTALLED" == "null" ]; then
     echo "Apache probably not accepting host header"
     sleep 6
     exit 1
 fi
+
+
+echo "Unpacking theme"
+
+rm -rf /var/www/html/themes/liquid || true
+cp -r /liquid/theme /var/www/html/themes/liquid
+chown -R www-data:www-data /var/www/html/themes/liquid
+chmod g+s /var/www/html/themes/liquid
+
+
+echo "Configuring..."
 
 php occ config:system:set trusted_domains 0 --value '*'
 php occ config:system:set dbhost --value $MYSQL_HOST
