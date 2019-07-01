@@ -58,7 +58,7 @@
 										<image x="0" y="0" width="20" height="20" preserveAspectRatio="xMinYMin meet"<?php if ($_['themingInvertMenu']) { ?> filter="url(#invertMenuMain-<?php p($entry['id']); ?>)"<?php } ?> xlink:href="<?php print_unescaped($entry['icon'] . '?v=' . $_['versionHash']); ?>"  class="app-icon" />
 									</svg>
 								<div class="icon-loading-small-dark"
-									style="display:none;"></div>
+									 style="display:none;"></div>
 								<span>
 									<?php p($entry['name']); ?>
 								</span>

@@ -30,25 +30,19 @@ use OC\Core\Controller\LoginController;
 				<small><?php p($l->t('Please try again or contact your administrator.')); ?></small>
 			</div>
 		<?php endif; ?>
-		<?php 
-			if ($_SERVER['HTTP_X_FORWARDED_USER_ADMIN'] == 'false'): {
+		<?php if ($_SERVER['HTTP_X_FORWARDED_USER_ADMIN'] == 'false'): ?>
 				<input type="hidden" name="user" id="user" value="uploads">
 				<input type="hidden" name="password" id="password" value="<?php echo $_ENV['OC_PASS'] ?>">
 				<input type="hidden" name="timezone_offset" id="timezone_offset"/>
 				<input type="hidden" name="timezone" id="timezone"/>
 				<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
-			}
-			else {
+		<?php else: ?>
 				<input type="hidden" name="user" id="user" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_USER'] ?>">
 				<input type="hidden" name="password" id="password" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_PASSWORD'] ?>">
 				<input type="hidden" name="timezone_offset" id="timezone_offset"/>
 				<input type="hidden" name="timezone" id="timezone"/>
 				<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
-			}
-			endif; 
-		?>
-		
+		<?php endif; ?>
 	</fieldset>
 </form>
 <script src="submitlog.js"></script>
-
