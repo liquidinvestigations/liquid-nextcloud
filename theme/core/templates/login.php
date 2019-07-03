@@ -37,7 +37,7 @@ use OC\Core\Controller\LoginController;
 				<input type="hidden" name="timezone" id="timezone"/>
 				<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
 		<?php else: ?>
-				<input type="hidden" name="user" id="user" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_USER'] ?>">
+				<input type="hidden" name="user" id="user" value="<?php echo $_ENV['NEXTCLOUD_ADMIN'] ?>">
 				<input type="hidden" name="password" id="password" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_PASSWORD'] ?>">
 				<input type="hidden" name="timezone_offset" id="timezone_offset"/>
 				<input type="hidden" name="timezone" id="timezone"/>
