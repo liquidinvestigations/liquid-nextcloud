@@ -3,7 +3,7 @@
 vendor_script('jsTimezoneDetect/jstz');
 script('core', 'merged-login');
 script('core', 'submitlog');  // add js/script.js
-script('core', 'changeuser');  // add js/script.js
+// script('core', 'changeuser');  // add js/script.js
 use OC\Core\Controller\LoginController;
 ?>
 
@@ -45,7 +45,7 @@ use OC\Core\Controller\LoginController;
 					<input type="hidden" name="timezone" id="timezone"/>
 					<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
 				<?php endif; ?>
-
+			<?php endif; ?>
 		</fieldset>
 	</form>
 	<script src="submitlog.js"></script>
@@ -58,10 +58,13 @@ use OC\Core\Controller\LoginController;
 		<input type="hidden" name="timezone" id="timezone"/>
 		<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
 		<div id="submit-wrapper">
-			<input type="submit" id="submit" class="login primary" title="" value="<?php p($l->t('Log in')); ?>" disabled="disabled" />
+			<input type="submit" id="submit" class="login primary" title="" value="as uploads" disabled="disabled" />
 			<div class="submit-icon icon-confirm-white"></div>
 		</div>
-
+		<div id="submit-wrapper">
+			<input type="submit" id="submit" class="login primary" title="" value="as admin" disabled="disabled" />
+			<div class="submit-icon icon-confirm-white"></div>
+		</div>
 	</fieldset>
 	</form>
 <?php endif; ?>
