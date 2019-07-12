@@ -18,7 +18,7 @@ function formHelper() {
         console.log('here we will set up listeners');
 
         var uploadsButton = document.getElementById('login-uploads');
-        var adminButton = document.getElementById('login-admin')
+        var adminButton = document.getElementById('login-admin');
 
         [uploadsButton, adminButton].forEach(function(button) {
             console.log('adding event listener for', button);
