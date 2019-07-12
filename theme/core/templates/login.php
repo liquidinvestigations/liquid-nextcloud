@@ -2,6 +2,7 @@
 <?php
 vendor_script('jsTimezoneDetect/jstz');
 script('core', 'merged-login');
+script('core', 'formhelper');
 use OC\Core\Controller\LoginController;
 ?>
 
