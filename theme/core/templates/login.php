@@ -48,21 +48,22 @@ use OC\Core\Controller\LoginController;
 		</fieldset>
 	</form>
 <?php else: ?>
-	<form method="post" name="login" id="login" data-autologin="false">>
-	<fieldset>
-		<input type="hidden" name="user" id="user" value="uploads">
-		<input type="hidden" name="password" id="password" value="<?php echo $_ENV['OC_PASS'] ?>">    
-		<input type="hidden" name="timezone_offset" id="timezone_offset"/>
-		<input type="hidden" name="timezone" id="timezone"/>
-		<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
-		<div id="submit-wrapper">
-			<input type="submit" id="submit" class="login primary" title="" value="as uploads" disabled="disabled" />
-			<div class="submit-icon icon-confirm-white"></div>
-		</div>
-		<div id="submit-wrapper">
-			<input type="submit" id="submit" class="login primary" title="" value="as admin" disabled="disabled" />
-			<div class="submit-icon icon-confirm-white"></div>
-		</div>
-	</fieldset>
+	<form method="post" name="login" id="login" data-autologin="false">
+		<fieldset>
+			<input type="hidden" name="user" id="user" value="uploads">
+			<input type="hidden" name="password" id="password" value="<?php echo $_ENV['OC_PASS'] ?>">
+			<input type="hidden" name="timezone_offset" id="timezone_offset"/>
+			<input type="hidden" name="timezone" id="timezone"/>
+			<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
+			<div>
+				<button type="button" data-user="uploads" data-password="<?php echo $_ENV['OC_PASS'] ?>" id="login-uploads">Log in as uploads</button>
+			</div>
+			<?php if ($_SERVER['HTTP_X_FORWARDED_USER_ADMIN'] == 'true'): ?>
+				<div>
+					<button type="button" data-user=<?php echo $_ENV['NEXTCLOUD_ADMIN'] ?> data-password="<?php echo $_ENV['NEXTCLOUD_ADMIN_PASSWORD'] ?>" id="login-admin">log in as admin</button>
+				</div>
+			<?php endif; ?>
+		</fieldset>
 	</form>
+
 <?php endif; ?>
