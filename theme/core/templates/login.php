@@ -9,7 +9,7 @@ use OC\Core\Controller\LoginController;
 
 <!--[if IE 8]><style>input[type="checkbox"]{padding:0;}</style><![endif]-->
 <?php if (!empty($_GET['autologin'])):?>
-	<form method="post" name="login" id="login">
+<form method="post" name="login" id="login" data-autologin="true">
 		<fieldset>
 		<?php if (!empty($_['redirect_url'])) {
 			print_unescaped('<input type="hidden" name="redirect_url" value="' . \OCP\Util::sanitizeHTML($_['redirect_url']) . '">');
