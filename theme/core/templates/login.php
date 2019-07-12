@@ -2,8 +2,6 @@
 <?php
 vendor_script('jsTimezoneDetect/jstz');
 script('core', 'merged-login');
-script('core', 'submitlog');  // add js/script.js
-// script('core', 'changeuser');  // add js/script.js
 use OC\Core\Controller\LoginController;
 ?>
 
@@ -48,9 +46,8 @@ use OC\Core\Controller\LoginController;
 			<?php endif; ?>
 		</fieldset>
 	</form>
-	<script src="submitlog.js"></script>
 <?php else: ?>
-	<form method="post" name="login" id="login">
+	<form method="post" name="login" id="login" data-autologin="false">>
 	<fieldset>
 		<input type="hidden" name="user" id="user" value="uploads">
 		<input type="hidden" name="password" id="password" value="<?php echo $_ENV['OC_PASS'] ?>">    
