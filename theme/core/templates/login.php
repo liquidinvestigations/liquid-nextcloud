@@ -32,7 +32,7 @@ use OC\Core\Controller\LoginController;
 			<?php endif; ?>
 			<?php if ($_GET['autologin'] == 'uploads'): ?>
 				<input type="hidden" name="user" id="user" value="uploads">
-				<input type="hidden" name="password" id="password" value="<?php echo $_ENV['OC_PASS'] ?>">
+				<input type="hidden" name="password" id="password" value="<?php echo $_ENV['UPLOADS_USER_PASSWORD'] ?>">
 				<input type="hidden" name="timezone_offset" id="timezone_offset"/>
 				<input type="hidden" name="timezone" id="timezone"/>
 				<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
@@ -51,12 +51,12 @@ use OC\Core\Controller\LoginController;
 	<form method="post" name="login" id="login" data-autologin="false">
 		<fieldset>
 			<input type="hidden" name="user" id="user" value="uploads">
-			<input type="hidden" name="password" id="password" value="<?php echo $_ENV['OC_PASS'] ?>">
+			<input type="hidden" name="password" id="password" value="<?php echo $_ENV['UPLOADS_USER_PASSWORD'] ?>">
 			<input type="hidden" name="timezone_offset" id="timezone_offset"/>
 			<input type="hidden" name="timezone" id="timezone"/>
 			<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
 			<div>
-				<button type="button" data-user="uploads" data-password="<?php echo $_ENV['OC_PASS'] ?>" id="login-uploads">Log in as uploads</button>
+				<button type="button" data-user="uploads" data-password="<?php echo $_ENV['UPLOADS_USER_PASSWORD'] ?>" id="login-uploads">Log in as uploads</button>
 			</div>
 			<?php if ($_SERVER['HTTP_X_FORWARDED_USER_ADMIN'] == 'true'): ?>
 				<div>
