@@ -1,5 +1,7 @@
 # liquid-nextcloud
 
+[![Build Status](https://jenkins.liquiddemo.org/api/badges/liquidinvestigations/liquid-nextcloud/status.svg)](https://jenkins.liquiddemo.org/liquidinvestigations/liquid-nextcloud)
+
 ### How to run
 
 1. Start NextCloud and let it do its first-run initialization:
