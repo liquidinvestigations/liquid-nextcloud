@@ -1,4 +1,4 @@
-FROM nextcloud:16
+FROM nextcloud:17
 
 RUN apt-get update -y && apt-get install -y jq sudo
 
