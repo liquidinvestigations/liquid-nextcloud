@@ -37,18 +37,16 @@ use OC\Core\Controller\LoginController;
 			<div style="clear: both;"></div>
 		</div>
 
-			<?php if ($_GET['autologin'] == 'uploads'): ?>
-				<input type="hidden" name="user" id="user" value="uploads">
-				<input type="hidden" name="password" id="password" value="<?php echo $_ENV['UPLOADS_USER_PASSWORD'] ?>">
-			<?php elseif ($_GET['autologin'] == 'admin'): ?>
-				<?php if ($_SERVER['HTTP_X_FORWARDED_USER_ADMIN'] == 'true'): ?>
-					<input type="hidden" name="user" id="user" value="<?php echo $_ENV['NEXTCLOUD_ADMIN'] ?>">
-					<input type="hidden" name="password" id="password" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_PASSWORD'] ?>">
-				<?php endif; ?>
-			<?php endif; ?>
+                <?php if ($_GET['autologin'] == 'admin' && $_SERVER['HTTP_X_FORWARDED_USER_ADMIN'] == 'true'): ?>
+                        <input readonly type="text" name="user" id="user" value="<?php echo $_ENV['NEXTCLOUD_ADMIN'] ?>">
+                        <input readonly type="hidden" name="password" id="password" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_PASSWORD'] ?>">
+                <?php else: ?>
+                        <input readonly type="text" name="user" id="user" value="uploads">
+                        <input readonly type="hidden" name="password" id="password" value="<?php echo $_ENV['UPLOADS_USER_PASSWORD'] ?>">
+                <?php endif; ?>
 
 		<div id="submit-wrapper">
-			<input type="submit" id="submit" class="login primary" title="" value="<?php p($l->t('Log in')); ?>" disabled="disabled" />
+			<input type="submit" id="submit" class="login primary" title="" value="<?php p($l->t('Log in')); ?>" />
 			<div class="submit-icon icon-confirm-white"></div>
 		</div>
 
