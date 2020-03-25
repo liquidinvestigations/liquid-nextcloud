@@ -1,6 +1,6 @@
 <?php /** @var $l \OCP\IL10N */ ?>
 <?php
-script('core', 'merged-login');
+#script('core', 'merged-login');
 script('core', 'formhelper');
 
 use OC\Core\Controller\LoginController;
@@ -73,14 +73,3 @@ use OC\Core\Controller\LoginController;
 		<input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
 	</fieldset>
 </form>
-<?php if (!empty($_['alt_login'])) { ?>
-<form id="alternative-logins">
-	<fieldset>
-		<ul>
-			<?php foreach($_['alt_login'] as $login): ?>
-				<li><a class="button" href="<?php print_unescaped($login['href']); ?>" ><?php p($login['name']); ?></a></li>
-			<?php endforeach; ?>
-		</ul>
-	</fieldset>
-</form>
-<?php }
