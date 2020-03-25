@@ -90,7 +90,7 @@ class OC_Theme {
 	 * @return string short footer
 	 */
 	public function getShortFooter() {
-		$footer = '© 2019 <a href="'.$this->getBaseUrl().'" target="_blank\">'.$this->getEntity().'</a>'.
+		$footer = '© ' . date('Y') . ' <a href="' . $this->getBaseUrl() . '" target="_blank">' . $this->getEntity() . '</a>' .
 			'<br/>' . $this->getSlogan();
 
 		return $footer;
@@ -101,14 +101,18 @@ class OC_Theme {
 	 * @return string long footer
 	 */
 	public function getLongFooter() {
-		$footer = '© 2019 <a href="'.$this->getBaseUrl().'" target="_blank\">'.$this->getEntity().'</a>'.
+		$footer = '© ' . date('Y') . ' <a href="' . $this->getBaseUrl() . '" target="_blank">' . $this->getEntity() . '</a>' .
 			'<br/>' . $this->getSlogan();
 
 		return $footer;
 	}
 
+	/**
+	 * Generate a documentation link for a given key
+	 * @return string documentation link
+	 */
 	public function buildDocLinkToKey($key) {
-		return $this->getDocBaseUrl() . '/server/15/go.php?to=' . $key;
+		return $this->getDocBaseUrl() . '/server/16/go.php?to=' . $key;
 	}
 
 
@@ -117,7 +121,7 @@ class OC_Theme {
 	 * @return string
 	 */
 	public function getColorPrimary() {
-		return '#0082c9';
+		return '#745bca';
 	}
 
 	/**
@@ -126,7 +130,7 @@ class OC_Theme {
 	 */
 	public function getScssVariables() {
 		return [
-			'color-primary' => '#0082c9'
+			'color-primary' => '#745bca'
 		];
 	}
 
