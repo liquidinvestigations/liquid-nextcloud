@@ -29,7 +29,7 @@ if [ "$INSTALLED" == "false" ]; then
             --admin-user=$NEXTCLOUD_ADMIN_USER \
             --admin-pass=$NEXTCLOUD_ADMIN_PASSWORD
 
-    php occ user:add --password-from-env --display-name="uploads" uploads
+    #php occ user:add --password-from-env --display-name="uploads" uploads
 
     echo "Installation successful -- now restarting (aka failing) the migrate job"
     exit 66
