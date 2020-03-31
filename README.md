@@ -23,10 +23,10 @@ Take note of where the service is available internally (in the following example
             -e NEXTCLOUD_INTERNAL_STATUS_URL=http://10.66.60.1:27777/status.php \
             -e NEXTCLOUD_ADMIN_USER=admin \
             -e NEXTCLOUD_ADMIN_PASSWORD=admin \
-            -e MYSQL_DB=nextcloud \
-            -e MYSQL_USER=nextcloud \
-            -e MYSQL_PASSWORD=nextcloud \
-            -e MYSQL_HOST=host.docker.internal:5432 \
+            -e POSTGRES_DB=nextcloud \
+            -e POSTGRES_USER=nextcloud \
+            -e POSTGRES_PASSWORD=nextcloud \
+            -e POSTGRES_HOST=host.docker.internal:5432 \
             -e NEXTCLOUD_HOST=external.example.com \
             -e OC_PASS=my-secret-password \
             -v `pwd`/volumes/nextcloud:/var/www/html \
