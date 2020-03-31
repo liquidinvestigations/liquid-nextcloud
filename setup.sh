@@ -21,7 +21,7 @@ if [ "$INSTALLED" == "false" ]; then
     php /var/www/html/occ maintenance:install \
             --no-interaction \
             --verbose \
-            --database pgsql \
+            --database postgresql \
             --database-name $POSTGRES_DB \
             --database-host $POSTGRES_HOST \
             --database-user $POSTGRES_USER \
