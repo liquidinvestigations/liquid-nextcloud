@@ -2,15 +2,11 @@
 
 set -ex
 
-# if [ -z "$NEXTCLOUD_INTERNAL_STATUS_URL" ]; then
-#     echo "Missing NEXTCLOUD_INTERNAL_STATUS_URL - please wait for apache to boot up"
-#     sleep 6
-#     exit 1
-# else
-#     echo "NISU = $NEXTCLOUD_INTERNAL_STATUS_URL"
-#     echo "$USER"
-#     echo "$PWD"
-# fi
+if [ -z "$NEXTCLOUD_INTERNAL_STATUS_URL" ]; then
+    echo "Missing NEXTCLOUD_INTERNAL_STATUS_URL - please wait for apache to boot up"
+    sleep 6
+    exit 1
+fi
 
 if [ -z "$MYSQL_HOST" ]; then
     echo "Missing MYSQL_HOST - please wait for the DB to spin up before running setup"
@@ -25,7 +21,7 @@ if [ "$INSTALLED" == "false" ]; then
     php /var/www/html/occ maintenance:install \
             --no-interaction \
             --verbose \
-            --database mysql \
+            --database pgsql \
             --database-name $MYSQL_DB \
             --database-host $MYSQL_HOST \
             --database-user $MYSQL_USER \
