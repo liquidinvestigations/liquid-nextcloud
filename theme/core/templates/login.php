@@ -41,7 +41,7 @@ use OC\Core\Controller\LoginController;
                         <input readonly type="text" name="user" id="user" value="<?php echo $_ENV['NEXTCLOUD_ADMIN'] ?>">
                         <input readonly type="hidden" name="password" id="password" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_PASSWORD'] ?>">
                 <?php else: ?>
-                        <input readonly type="text" name="user" id="user" value="uploads">
+                        <input readonly type="text" name="user" id="user" value="upload">
                         <input readonly type="hidden" name="password" id="password" value="<?php echo $_ENV['UPLOADS_USER_PASSWORD'] ?>">
                 <?php endif; ?>
 
