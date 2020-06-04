@@ -39,10 +39,10 @@ use OC\Core\Controller\LoginController;
 
                 <?php if ($_GET['autologin'] == 'admin' && $_SERVER['HTTP_X_FORWARDED_USER_ADMIN'] == 'true'): ?>
                         <input readonly type="text" name="user" id="user" value="<?php echo $_ENV['NEXTCLOUD_ADMIN'] ?>">
-                        <input readonly type="hidden" name="password" id="password" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_PASSWORD'] ?>">
+                        <input readonly type="password" name="password" id="password" value="<?php echo $_ENV['NEXTCLOUD_ADMIN_PASSWORD'] ?>">
                 <?php else: ?>
-                        <input readonly type="text" name="user" id="user" value="upload">
-                        <input readonly type="hidden" name="password" id="password" value="<?php echo $_ENV['UPLOADS_USER_PASSWORD'] ?>">
+                        <input readonly type="text" name="user" id="user" value="uploads">
+                        <input readonly type="password" name="password" id="password" value="<?php echo $_ENV['UPLOADS_USER_PASSWORD'] ?>">
                 <?php endif; ?>
 
 		<div id="submit-wrapper">
