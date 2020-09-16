@@ -112,7 +112,7 @@ class OC_Theme {
 	 * @return string documentation link
 	 */
 	public function buildDocLinkToKey($key) {
-		return $this->getDocBaseUrl() . '/server/16/go.php?to=' . $key;
+		return $this->getDocBaseUrl() . '/server/19/go.php?to=' . $key;
 	}
 
 
