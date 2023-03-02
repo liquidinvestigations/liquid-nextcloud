@@ -73,7 +73,7 @@ class OC_Theme {
 	 * @return string slogan
 	 */
 	public function getSlogan() {
-		return $_ENV['LIQUID_TITLE'] . ' - Dump <i>Those</i> Files Over Here';
+		return $_ENV['LIQUID_TITLE'] . ' - Dump Files Here';
 	}
 
 	/**
@@ -117,7 +117,7 @@ class OC_Theme {
 	 * @return string
 	 */
 	public function getColorPrimary() {
-		return '#0082c9';
+		return $_ENV['LIQUID_COLOR_PRIMARY'];
 	}
 
 	/**
@@ -126,7 +126,7 @@ class OC_Theme {
 	 */
 	public function getScssVariables() {
 		return [
-			'color-primary' => '#0082c9'
+			'color-primary' => $_ENV['LIQUID_COLOR_PRIMARY']
 		];
 	}
 

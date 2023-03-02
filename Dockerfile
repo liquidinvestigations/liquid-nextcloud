@@ -6,3 +6,6 @@ COPY ./theme /liquid/theme
 
 COPY ./setup.sh /setup.sh
 RUN chmod 0775 /setup.sh
+
+ENV LIQUID_TITLE="demo"
+ENV LIQUID_COLOR_PRIMARY="#0082c9"
