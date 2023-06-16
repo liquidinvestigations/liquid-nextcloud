@@ -1,10 +1,12 @@
-FROM nextcloud:stable-apache
+FROM nextcloud:27-apache
 
-RUN apt-get update -y && apt-get install -y jq sudo postgresql-client wget
-RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc -nv -O /bin/mc \
- && chmod +x /bin/mc \
- && /bin/mc --version \
- && psql --version
+RUN apt-get update -y && apt-get install -y wget unzip
 
-COPY ./theme /liquid/theme
-RUN echo 'www-data ALL = (root) NOPASSWD: /bin/chown' >> /etc/sudoers
+RUN wget https://github.com/liquidinvestigations/nextcloud-social-login/archive/refs/heads/master.zip
+RUN pwd
+RUN ls .
+RUN unzip master.zip
+RUN mkdir -p /var/www/html/custom_apps/sociallogin
+RUN mv nextcloud-social-login-master/* /var/www/html/custom_apps/sociallogin
+RUN rm master.zip
+RUN rm -r /var/www/html/nextcloud-social-login-master
