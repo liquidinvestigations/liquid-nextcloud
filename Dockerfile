@@ -7,3 +7,5 @@ RUN mkdir /apps-to-install
 WORKDIR /apps-to-install
 
 RUN wget https://github.com/liquidinvestigations/nextcloud-social-login/archive/refs/heads/master.zip
+
+WORKDIR /var/www/html
