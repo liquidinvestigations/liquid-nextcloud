@@ -1,4 +1,4 @@
-FROM nextcloud:28-apache
+FROM nextcloud:28.0.3-apache
 
 RUN apt-get update -y && apt-get install -y wget unzip
 
