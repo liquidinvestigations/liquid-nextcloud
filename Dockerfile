@@ -10,8 +10,4 @@ RUN wget -O sociallogin.zip https://github.com/liquidinvestigations/nextcloud-so
 
 RUN unzip /apps-to-install/sociallogin.zip -d /apps-to-install
 
-RUN mkdir -p /var/www/html/custom_apps/sociallogin
-
-RUN mv /apps-to-install/nextcloud-social-login-*/* /var/www/html/custom_apps/sociallogin
-
 WORKDIR /var/www/html
